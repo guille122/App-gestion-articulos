@@ -23,12 +23,24 @@ namespace Gestion_Articulos
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulos = negocio.list();
-            dgvLista.DataSource = listaArticulos;
-            cargarImagen(listaArticulos[0].urlImagen);
-            ocultarFilas();
+            cargarFormulario();
 
+        }
+        private void cargarFormulario()
+        {
+            try
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                listaArticulos = negocio.list();
+                dgvLista.DataSource = listaArticulos;
+                ocultarFilas();
+                cargarImagen(listaArticulos[0].urlImagen);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void ocultarFilas()
@@ -36,8 +48,6 @@ namespace Gestion_Articulos
             dgvLista.Columns["urlImagen"].Visible = false;
             
         }
-        
-        
         
 
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
@@ -56,6 +66,13 @@ namespace Gestion_Articulos
 
                 pbxUrlImagen.Load("https://editorial.unc.edu.ar/wp-content/uploads/sites/33/2022/09/placeholder.png");
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Ventana_agregar agregar = new Ventana_agregar();
+            agregar.ShowDialog();
+            cargarFormulario();
         }
     }
 

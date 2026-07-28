@@ -43,10 +43,32 @@ namespace negocio
 
                 throw ex;
             }
-            
+
                 
                 
                 
+        }
+        public void agregarProducto(Articulo articulos)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("insert into ARTICULOS(Codigo,Nombre,Descripcion,IdMarca,IdCategoria,ImagenUrl,Precio)values(@Codigo,@Nombre,@Descripcion,@IdMarca,@IdCategoria,@ImagenUrl,@Precio)");
+                datos.setearParametros("@Codigo",articulos.codigoArticulo);
+                datos.setearParametros("@Nombre",articulos.nombre);
+                datos.setearParametros("@Descripcion",articulos.descripcion);
+                datos.setearParametros("@IdMarca",articulos.marcas.id);
+                datos.setearParametros("@IdCategoria",articulos.categorias.id);
+                datos.setearParametros("@ImagenUrl",articulos.urlImagen);
+                datos.setearParametros("@Precio",articulos.precio);
+                datos.ejecutarAccion();
+                datos.cerraConexion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex ;
+            }
         }
         
 
