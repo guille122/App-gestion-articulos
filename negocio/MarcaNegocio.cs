@@ -26,13 +26,18 @@ namespace negocio
                     aux.descripcion = (string)datos.Lector["descripcion"];
                     lista.Add(aux);
                 }
-                datos.cerraConexion();
+
                 return lista;
+                
             }
             catch (Exception ex)
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerraConexion();
             }
 
           

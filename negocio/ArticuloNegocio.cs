@@ -17,19 +17,22 @@ namespace negocio
             List<Articulo>lista = new List<Articulo>();
             try
             {
-                datos.setearConsulta("select codigo,nombre,A.Descripcion,imagenUrl,Precio,C.Descripcion categoria ,M.Descripcion marca from ARTICULOS A ,CATEGORIAS C ,MARCAS M where IdCategoria = C.Id and IdMarca = M.id");
+                datos.setearConsulta("select A.Id id ,codigo,nombre,A.Descripcion,imagenUrl,Precio,C.Descripcion categoria ,M.Descripcion marca,M.Id idmarca,C.Id idcategoria from ARTICULOS A ,CATEGORIAS C ,MARCAS M where IdCategoria = C.Id and IdMarca = M.id");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
+                    aux.id = (int)datos.Lector["id"];
                     aux.codigoArticulo = (string)datos.Lector["codigo"];
                     aux.nombre = (string)datos.Lector["nombre"];
                     aux.descripcion = (string)datos.Lector["descripcion"];
                     aux.urlImagen = (string)datos.Lector["imagenUrl"];
                     aux.precio = (decimal)datos.Lector["precio"];
                     aux.categorias = new Categoria();
+                    aux.categorias.id = (int)datos.Lector["idcategoria"];
                     aux.categorias.descripcion = (string)datos.Lector["categoria"];
                     aux.marcas = new Marca();
+                    aux.marcas.id = (int)datos.Lector["idmarca"];
                     aux.marcas.descripcion = (string)datos.Lector["marca"];
 
                     lista.Add(aux);
@@ -68,6 +71,47 @@ namespace negocio
             {
 
                 throw ex ;
+            }
+        }
+
+        public void eliminar(Articulo articulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("delete  ARTICULOS where id = @id");
+                datos.setearParametros("@id", articulo.id);
+                datos.ejecutarAccion();
+                datos.cerraConexion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public void modificar(Articulo articulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @codigo,nombre =@nombre,Descripcion = @descripcion,IdMarca = @idmarca,IdCategoria = @idcategoria,ImagenUrl = @imagenurl,Precio= @precio where id = @id");
+                datos.setearParametros("@codigo",articulo.codigoArticulo);
+                datos.setearParametros("@nombre", articulo.nombre);
+                datos.setearParametros("@descripcion",articulo.descripcion);
+                datos.setearParametros("@idmarca",articulo.marcas.id);
+                datos.setearParametros("@idcategoria",articulo.categorias.id);
+                datos.setearParametros("@imagenurl",articulo.urlImagen);
+                datos.setearParametros("@precio",articulo.precio);
+                datos.setearParametros("@id",articulo.id);
+                datos.ejecutarAccion();
+                datos.cerraConexion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
         

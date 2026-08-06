@@ -26,13 +26,17 @@ namespace negocio
 
 					lista.Add(aux);
 				}
-				datos.cerraConexion();
+				
                 return lista;
             }
 			catch (Exception ex)
 			{
 
 				throw ex;
+			}
+			finally
+			{
+				datos.cerraConexion();
 			}
 			
         }
