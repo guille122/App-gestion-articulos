@@ -47,6 +47,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.pbxImagenModificar = new System.Windows.Forms.PictureBox();
             this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.lblValidarCodigo = new System.Windows.Forms.Label();
+            this.lblValidarNombre = new System.Windows.Forms.Label();
+            this.lblValidarPrecio = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImagenModificar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,6 +161,7 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(100, 20);
             this.txtPrecio.TabIndex = 14;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // cboMarca
             // 
@@ -197,7 +201,7 @@
             // 
             // pbxImagenModificar
             // 
-            this.pbxImagenModificar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbxImagenModificar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbxImagenModificar.Location = new System.Drawing.Point(268, 73);
             this.pbxImagenModificar.Name = "pbxImagenModificar";
             this.pbxImagenModificar.Size = new System.Drawing.Size(187, 190);
@@ -215,11 +219,44 @@
             this.btnAgregarImagen.UseVisualStyleBackColor = true;
             this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
             // 
+            // lblValidarCodigo
+            // 
+            this.lblValidarCodigo.AutoSize = true;
+            this.lblValidarCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValidarCodigo.Location = new System.Drawing.Point(243, 73);
+            this.lblValidarCodigo.Name = "lblValidarCodigo";
+            this.lblValidarCodigo.Size = new System.Drawing.Size(17, 22);
+            this.lblValidarCodigo.TabIndex = 21;
+            this.lblValidarCodigo.Text = "*";
+            // 
+            // lblValidarNombre
+            // 
+            this.lblValidarNombre.AutoSize = true;
+            this.lblValidarNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValidarNombre.Location = new System.Drawing.Point(243, 102);
+            this.lblValidarNombre.Name = "lblValidarNombre";
+            this.lblValidarNombre.Size = new System.Drawing.Size(17, 22);
+            this.lblValidarNombre.TabIndex = 22;
+            this.lblValidarNombre.Text = "*";
+            // 
+            // lblValidarPrecio
+            // 
+            this.lblValidarPrecio.AutoSize = true;
+            this.lblValidarPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblValidarPrecio.Location = new System.Drawing.Point(243, 241);
+            this.lblValidarPrecio.Name = "lblValidarPrecio";
+            this.lblValidarPrecio.Size = new System.Drawing.Size(17, 22);
+            this.lblValidarPrecio.TabIndex = 23;
+            this.lblValidarPrecio.Text = "*";
+            // 
             // Ventana_agregar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 389);
+            this.Controls.Add(this.lblValidarPrecio);
+            this.Controls.Add(this.lblValidarNombre);
+            this.Controls.Add(this.lblValidarCodigo);
             this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.pbxImagenModificar);
             this.Controls.Add(this.btnCancelar);
@@ -270,5 +307,8 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.PictureBox pbxImagenModificar;
         private System.Windows.Forms.Button btnAgregarImagen;
+        private System.Windows.Forms.Label lblValidarCodigo;
+        private System.Windows.Forms.Label lblValidarNombre;
+        private System.Windows.Forms.Label lblValidarPrecio;
     }
 }

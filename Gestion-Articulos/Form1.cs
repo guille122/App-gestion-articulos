@@ -23,11 +23,15 @@ namespace Gestion_Articulos
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            List<string> listaFiltro = new List<string>();
+            listaFiltro.Add("Nombre");
+            listaFiltro.Add("Codigo");
+            listaFiltro.Add("Precio");
+            cboTipoFiltro.DataSource = listaFiltro;
+            
             cargarFormulario();
-            cboTipoFiltro.Items.Add("Codigo");
-            cboTipoFiltro.Items.Add("Nombre");
-            cboTipoFiltro.Items.Add("Precio");
-
+            
+            
         }
         private void cargarFormulario()
         {
@@ -107,19 +111,15 @@ namespace Gestion_Articulos
             cargarFormulario();
         }
 
-        private void btnFiltro_Click(object sender, EventArgs e)
-        {
-           
-
-        }
+        
 
         private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             List<Articulo> articuloFiltrado;
             string filtro = txtFiltro.Text;
             string filtroItem = cboTipoFiltro.SelectedItem.ToString();
-            if (filtro != null)
-            {
+            
+            
                 if (filtroItem == "Codigo")
                 {
                     articuloFiltrado = listaArticulos.FindAll(x => x.codigoArticulo.ToUpper().Contains(filtro.ToUpper()));
@@ -137,11 +137,7 @@ namespace Gestion_Articulos
                 {
                     articuloFiltrado = listaArticulos;
                 }
-            }
-            else
-            {
-                articuloFiltrado = listaArticulos;
-            }
+               
              
             dgvLista.DataSource = articuloFiltrado;
             ocultarFilas();

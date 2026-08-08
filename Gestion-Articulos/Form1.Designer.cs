@@ -35,7 +35,6 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.lblFiltro = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.btnFiltro = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cboTipoFiltro = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
@@ -56,7 +55,7 @@
             // 
             // pbxUrlImagen
             // 
-            this.pbxUrlImagen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbxUrlImagen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbxUrlImagen.Location = new System.Drawing.Point(672, 87);
             this.pbxUrlImagen.Name = "pbxUrlImagen";
             this.pbxUrlImagen.Size = new System.Drawing.Size(228, 269);
@@ -111,16 +110,6 @@
             this.txtFiltro.TabIndex = 6;
             this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
-            // btnFiltro
-            // 
-            this.btnFiltro.Location = new System.Drawing.Point(574, 53);
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltro.TabIndex = 7;
-            this.btnFiltro.Text = "Buscar";
-            this.btnFiltro.UseVisualStyleBackColor = true;
-            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -146,7 +135,6 @@
             this.ClientSize = new System.Drawing.Size(914, 417);
             this.Controls.Add(this.cboTipoFiltro);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnFiltro);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.lblFiltro);
             this.Controls.Add(this.btnModificar);
@@ -174,7 +162,6 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Label lblFiltro;
         private System.Windows.Forms.TextBox txtFiltro;
-        private System.Windows.Forms.Button btnFiltro;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboTipoFiltro;
     }

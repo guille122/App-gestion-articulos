@@ -40,30 +40,70 @@ namespace Gestion_Articulos
                 if (articulo == null)
                     articulo = new Articulo();
 
-                articulo.codigoArticulo = txtCodigo.Text.ToUpper();
-                articulo.nombre = txtNombre.Text;
+                if(txtCodigo.Text != "")
+                {
+                    articulo.codigoArticulo = txtCodigo.Text.ToUpper();
+                }
+                else
+                {
+                    lblValidarCodigo.ForeColor = Color.Red;
+                }
+                if(txtNombre.Text != "")
+                {
+                    articulo.nombre = txtNombre.Text;
+                }
+                else
+                {
+                    lblValidarNombre.ForeColor = Color.Red;
+                }
+                if(txtPrecio.Text != "")
+                {
+                    articulo.precio = decimal.Parse(txtPrecio.Text);
+                }
+                else
+                {
+                    lblValidarPrecio.ForeColor = Color.Red;
+                }
                 articulo.descripcion = txtDescripcion.Text;
                 articulo.urlImagen = txtImagenUrl.Text;
                 articulo.marcas =(Marca)cboMarca.SelectedItem;
                 articulo.categorias = (Categoria)cboCategoria.SelectedItem;
-                articulo.precio = decimal.Parse(txtPrecio.Text);
 
                 if(articulo.id != 0)
                 {
-                    negocio.modificar(articulo);
-                    MessageBox.Show("Modificado exitosamente!!");
+                    if(txtCodigo.Text != "" && txtNombre.Text != "" && txtPrecio.Text != "")
+                    {
+                        negocio.modificar(articulo);
+                        MessageBox.Show("Modificado exitosamente!!");
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Complete los campos marcados");
+                    }
                 }
                 else
                 {
-                    negocio.agregarProducto(articulo);
-                    MessageBox.Show("Se agrego exitosamente!!!");
+                    if(txtCodigo.Text != "" && txtNombre.Text != "" && txtPrecio.Text != "")
+                    {
+                        negocio.agregarProducto(articulo);
+                        MessageBox.Show("Se agrego exitosamente!!!");
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Complete los campos marcados");
+                    }
                 }
+                //Crea una copia de la imagen localmente
+                /*
                 if(archivo != null  && !(txtImagenUrl.Text.ToUpper().Contains("HTTP")))
                 {
                     File.Copy(archivo.FileName,ConfigurationManager.AppSettings["ImagenArticulo"] + archivo.SafeFileName);
                 }
+                */
                 
-                Close();
+                
                 
             }
             catch (Exception ex)
@@ -146,6 +186,12 @@ namespace Gestion_Articulos
                 cargarImagen(archivo.FileName);
                 
             }
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 59) && e.KeyChar != 8)
+                e.Handled = true;
         }
     }
 }
